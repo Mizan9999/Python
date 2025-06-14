@@ -1,13 +1,39 @@
-def calculate_love_score(name1, name2):
-    true_score = 0
-    combined = (name1 + name2).lower()
-    for letter in "true":
-        true_score += combined.count(letter)
-    
-    love_score = 0
-    for letter in "love":
-        love_score += combined.count(letter)
-    
-    print(f"{true_score}{love_score}")
+char = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+#type_operation = input("Encode or Decode: ").lower()
+msg = input("message: ")
 
-calculate_love_score("mizan", "angle")
+def encode(msg):
+    result_list = []
+    
+    for letters in msg:
+        
+        for i in range(0,len(char)-1):
+            if letters == char[i]:
+                result_list.append(char[i+2])
+                break
+            else:
+                result_list.append(letters)
+    result = "".join(result_list)
+    return result
+
+print(encode(msg))
+
+"""
+def decode(msg):
+    result_list = []
+    result = "".join(result_list)
+    for letters in msg:
+        
+        for i in range(0,len(char)-1):
+            if letters == char[i]:
+                result_list.append(char[i-2])
+                break
+            else:
+                result_list.append(letters)
+    return result
+
+if type_operation == "encode":
+    encode(msg)
+elif type_operation == "decode":
+    decode(msg)
+"""
