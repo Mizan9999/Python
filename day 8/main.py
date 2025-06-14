@@ -1,39 +1,47 @@
 char = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-#type_operation = input("Encode or Decode: ").lower()
-msg = input("message: ")
+type_operation = input("Encode or Decode: ").lower()
 
+msg = input("message: ")
+decode_char = list(reversed(char))
 def encode(msg):
     result_list = []
+    n = len(char)  # Calculate once outside loop
     
-    for letters in msg:
-        
-        for i in range(0,len(char)-1):
-            if letters == char[i]:
-                result_list.append(char[i+2])
+    for letter in msg:
+        found = False
+        for i in range(n):
+            if letter == char[i]:
+                new_index = i + 2
+                if new_index >= n:
+                    new_index -= n  # Wrap around
+                result_list.append(char[new_index])
+                found = True
                 break
-            else:
-                result_list.append(letters)
-    result = "".join(result_list)
-    return result
+        if not found:
+            result_list.append(letter)
+    return "".join(result_list)
 
-print(encode(msg))
-
-"""
 def decode(msg):
     result_list = []
-    result = "".join(result_list)
-    for letters in msg:
-        
-        for i in range(0,len(char)-1):
-            if letters == char[i]:
-                result_list.append(char[i-2])
+    n = len(decode_char)
+    
+    for letter in msg:
+        found = False
+        for i in range(n):
+            if letter == decode_char[i]:
+                new_index = i + 2  # Shift forward in reversed list
+                if new_index >= n:
+                    new_index -= n
+                result_list.append(decode_char[new_index])
+                found = True
                 break
-            else:
-                result_list.append(letters)
-    return result
+        if not found:
+            result_list.append(letter)
+    return "".join(result_list)
+
+
 
 if type_operation == "encode":
-    encode(msg)
+    print(encode(msg))
 elif type_operation == "decode":
-    decode(msg)
-"""
+    print(decode(msg))
