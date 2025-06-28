@@ -1,4 +1,4 @@
-questions = [
+questions_data = [
     {"question": "Is Python an interpreted language?", "answer": "yes"},
     {"question": "Is Java platform-independent?", "answer": "yes"},
     {"question": "Is C a low-level language?", "answer": "no"},

@@ -7,4 +7,3 @@ class Question:
 
 
 new_q = Question("Question","Answer")
-print(new_q.text)
